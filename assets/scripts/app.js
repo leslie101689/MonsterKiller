@@ -3,7 +3,14 @@ const STRONG_ATTACK_VALUE = 17;
 const MONSTER_ATTACK_VALUE = 14;
 const HEAL_VALUE = 20;
 
-let chosenMaxLife = 100;
+const enteredValue =  prompt('Maximum life for you and the monster.', '100');
+
+let chosenMaxLife = parseInt(enteredValue);
+
+if (isNaN(chosenMaxLife || chosenMaxLife <= 0)) {
+  chosenMaxLife = 100;
+}
+
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
@@ -21,7 +28,7 @@ function endRound() {
   const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
   currentPlayerHealth -= playerDamage;
   
-  if(currentPlayerHealth <= 0 && hasBonusLife) {
+  if (currentPlayerHealth <= 0 && hasBonusLife) {
     hasBonusLife = false;
     removeBonusLife();
     currentPlayerHealth = initialPlayerHealth;
@@ -32,10 +39,10 @@ function endRound() {
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
     alert('You won!');
     reset();
-  } else if(currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
+  } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
     alert('You lost!');
     reset();
-  } else if(currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
+  } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
     alert('You have a draw!');
     reset();
   }
@@ -43,9 +50,9 @@ function endRound() {
 
 function attackMonster(mode) {
   let maxDamage;
-  if(mode === 'ATTACK') {
+  if (mode === 'ATTACK') {
     maxDamage = ATTACK_VALUE;
-  } else if(mode === 'STRONG_ATTACK') {
+  } else if (mode === 'STRONG_ATTACK') {
     maxDamage = STRONG_ATTACK_VALUE;
   }
   
