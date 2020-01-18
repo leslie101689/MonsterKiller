@@ -204,9 +204,10 @@ function printLogHandler() {
   // }
   let i = 0;
   for(const logEntry of battlelog) {
-    console.log(logEntry);
-    //manual check index
-    console.log(i);
+    console.log(`#${i}`);
+    for(const key in logEntry) {
+      console.log(`${key} => ${logEntry[key]}`);
+    }
     i++;
   }
 }
